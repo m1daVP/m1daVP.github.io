@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Vadym Pasichnyk, a senior full-stack engineer and technical lead focused on SaaS platforms, frontend architecture, backend systems, and AI-powered products."
+    />
+    <meta name="theme-color" content="#080a0f" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Vadym Pasichnyk — Senior Full-Stack Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Senior full-stack engineer and technical lead building SaaS platforms, scalable product systems, and AI-powered workflows."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Vadym Pasichnyk — Senior Full-Stack Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Senior full-stack engineer and technical lead building SaaS platforms, scalable product systems, and AI-powered workflows."
+    />
+    <title>Vadym Pasichnyk — Senior Full-Stack Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #080a0f;
+        --surface: #0e1117;
+        --surface2: #141820;
+        --border: #1d2233;
+        --border2: #252d42;
+        --teal: #00cfa8;
+        --teal-dim: #00cfa820;
+        --teal-mid: #00cfa840;
+        --orange: #ff7140;
+        --orange-dim: #ff714015;
+        --orange-mid: #ff714030;
+        --text: #edf0f8;
+        --text-2: #8892a8;
+        --text-3: #525f7a;
+        --mono: 'JetBrains Mono', monospace;
+        --sans: 'DM Sans', sans-serif;
+        --display: 'Syne', sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* grid texture */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 48px 48px;
+        opacity: 0.25;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(1.5rem, 5vw, 4rem);
+        height: 64px;
+        background: rgba(8, 10, 15, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--teal);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--text-2);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--teal);
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+      .nav-toggle svg {
+        width: 18px;
+        height: 18px;
+      }
+      .nav-toggle:hover {
+        border-color: var(--teal-mid);
+        color: var(--teal);
+      }
+
+      /* ─── WRAPPER ─── */
+      .wrap {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 5vw, 3rem);
+      }
+
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 64px;
+      }
+
+      .hero-inner {
+        width: 100%;
+        padding: 6rem 0 4rem;
+      }
+
+      .hero-tag {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 400;
+        color: var(--teal);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero-tag::before {
+        content: '';
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--teal);
+      }
+
+      h1 {
+        font-family: var(--display);
+        font-size: clamp(2.4rem, 8vw, 6.5rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      h1 .last {
+        color: var(--teal);
+      }
+
+      .hero-subtitle {
+        font-family: var(--display);
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+        color: var(--text-2);
+        margin-top: 1.25rem;
+        margin-bottom: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.1em;
+        background: var(--teal);
+        margin-left: 2px;
+        vertical-align: text-bottom;
+        animation: blink 1s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+        list-style: none;
+      }
+
+      .meta-item {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--text-3);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .meta-item svg {
+        color: var(--teal);
+        flex-shrink: 0;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .btn {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.75rem 1.75rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--teal);
+        color: #000;
+      }
+      .btn-primary:hover {
+        background: #00e8bb;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--teal-mid);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-2);
+        border: 1px solid var(--border2);
+      }
+      .btn-ghost:hover {
+        color: var(--text);
+        border-color: var(--text-3);
+        transform: translateY(-2px);
+      }
+
+      /* accent bar under hero */
+      .hero-divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 5rem;
+      }
+      .hero-divider-line {
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(90deg, var(--teal) 0%, transparent 100%);
+      }
+      .hero-divider-txt {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--text-3);
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      /* ─── SECTION COMMONS ─── */
+      section {
+        padding: 6rem 0;
+      }
+
+      .section-label {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--teal);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .section-label::before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--teal);
+      }
+
+      h2 {
+        font-family: var(--display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+      }
+
+      /* ─── ABOUT ─── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .about-text p {
+        color: var(--text-2);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+      .about-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .about-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .stat-row {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        background: var(--surface);
+        gap: 1rem;
+        transition: background 0.2s;
+      }
+      .stat-row:hover {
+        background: var(--surface2);
+      }
+
+      .stat-num {
+        font-family: var(--display);
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--teal);
+        min-width: 72px;
+        line-height: 1;
+        margin: 0;
+        order: -1;
+      }
+      .stat-desc {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        line-height: 1.4;
+        margin: 0;
+      }
+      .stat-desc strong {
+        display: block;
+        color: var(--text);
+        font-weight: 500;
+        margin-bottom: 0.15rem;
+      }
+
+      /* ─── SKILLS ─── */
+      #skills {
+        background: var(--surface);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        list-style: none;
+      }
+
+      .skill-group {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .skill-group:hover {
+        border-color: var(--border2);
+        transform: translateY(-3px);
+      }
+      .skill-group::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--teal);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .skill-group:hover::before {
+        transform: scaleX(1);
+      }
+
+      .skill-group-label {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--teal);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+      }
+
+      .tag {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--text-2);
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 0.25rem 0.6rem;
+        transition: all 0.15s;
+      }
+      .tag:hover {
+        color: var(--teal);
+        border-color: var(--teal-mid);
+        background: var(--teal-dim);
+      }
+
+      /* ─── EXPERIENCE ─── */
+      .timeline {
+        position: relative;
+        padding-left: 2rem;
+        list-style: none;
+      }
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 8px;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(180deg, var(--teal) 0%, var(--border) 100%);
+      }
+
+      .job {
+        position: relative;
+        padding-bottom: 3.5rem;
+        animation: fadeUp 0.5s ease both;
+      }
+      .job:last-child {
+        padding-bottom: 0;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .job-dot {
+        position: absolute;
+        left: -2rem;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--teal);
+        border: 2px solid var(--bg);
+        box-shadow: 0 0 0 3px var(--teal-mid);
+      }
+
+      .job-period {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--teal);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.5rem;
+      }
+
+      .job-title {
+        font-family: var(--display);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+      }
+
+      .job-company {
+        font-size: 0.85rem;
+        color: var(--text-3);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+      .job-company span {
+        font-style: normal;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--orange);
+        background: var(--orange-dim);
+        border: 1px solid var(--orange-mid);
+        padding: 0.15rem 0.5rem;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+      }
+
+      .job-desc {
+        list-style: none;
+        margin-bottom: 1.25rem;
+      }
+      .job-desc li {
+        font-size: 0.9rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        padding: 0.3rem 0 0.3rem 1.25rem;
+        position: relative;
+      }
+      .job-desc li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: var(--teal);
+        font-size: 0.7rem;
+        top: 0.45rem;
+      }
+
+      .job-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        list-style: none;
+      }
+
+      .tech-tag {
+        font-family: var(--mono);
+        font-size: 0.67rem;
+        color: var(--text-3);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 0.2rem 0.55rem;
+      }
+
+      /* ─── EDUCATION & LANGUAGES ─── */
+      #edu {
+        background: var(--surface);
+      }
+
+      .edu-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .edu-card {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: var(--bg);
+        margin-bottom: 1rem;
+        transition: border-color 0.2s;
+      }
+      .edu-card:hover {
+        border-color: var(--border2);
+      }
+      .edu-card:last-child {
+        margin-bottom: 0;
+      }
+
+      .edu-list,
+      .lang-list {
+        list-style: none;
+      }
+      .edu-list li + li {
+        margin-top: 1rem;
+      }
+
+      .edu-degree {
+        font-family: var(--display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.25rem;
+      }
+
+      .edu-uni {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        margin-bottom: 0.25rem;
+      }
+
+      .edu-year {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--teal);
+      }
+
+      .lang-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        background: var(--bg);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .lang-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .lang-flag {
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+      .lang-info {
+        flex: 1;
+      }
+      .lang-name {
+        font-weight: 500;
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+      .lang-level {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--text-3);
+        letter-spacing: 0.06em;
+      }
+
+      /* ─── CONTACT ─── */
+      #contact {
+        text-align: center;
+        padding: 8rem 0 6rem;
+      }
+
+      .contact-headline {
+        font-family: var(--display);
+        font-size: clamp(2.3rem, 6vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: var(--text);
+        margin-bottom: 1.5rem;
+      }
+      .contact-headline span {
+        color: var(--teal);
+      }
+
+      .contact-sub {
+        font-size: 1rem;
+        color: var(--text-2);
+        max-width: 480px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 4rem;
+        font-style: normal;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-txt {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--text-3);
+      }
+      .footer-txt span {
+        color: var(--teal);
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 700px) {
+        .about-grid,
+        .edu-grid {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          position: fixed;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: calc(100% + 0.75rem);
+          left: 1.5rem;
+          right: 1.5rem;
+          flex-direction: column;
+          gap: 0;
+          padding: 0.5rem;
+          background: rgba(8, 10, 15, 0.98);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+        nav.nav-open .nav-links {
+          display: flex;
+        }
+        .nav-links li + li {
+          border-top: 1px solid var(--border);
+        }
+        .nav-links a {
+          display: block;
+          padding: 0.9rem 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav aria-label="Primary">
+      <a class="nav-logo" href="#hero">VP<span>.</span></a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open navigation"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="site-nav">
+        <li><a href="#about">about</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#edu">education</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section id="hero">
+        <div class="wrap">
+          <div class="hero-inner">
+            <p class="hero-tag">available for new opportunities</p>
+
+            <h1>
+              Vadym<br />
+              <span class="last">Pasichnyk</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              <span id="typed-text">Senior Full-Stack Engineer</span
+              ><span class="cursor"></span>
+            </p>
+
+            <ul class="hero-meta" aria-label="Profile highlights">
+              <li class="meta-item">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                  />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+                Poland (remote)
+              </li>
+              <li class="meta-item">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M2 9h20M7 4v5" />
+                </svg>
+                <span id="experience-label">7+ years of experience</span>
+              </li>
+              <li class="meta-item">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                Full-Stack · Tech Lead · AI
+              </li>
+            </ul>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#contact">Get in touch</a>
+              <a class="btn btn-ghost" href="#experience">View work</a>
+              <a
+                class="btn btn-ghost"
+                href="https://www.linkedin.com/in/vadym-pasichnyk-736b6a198/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn ↗</a
+              >
+            </div>
+
+            <div class="hero-divider">
+              <div class="hero-divider-line"></div>
+              <p class="hero-divider-txt">// scroll to explore</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="wrap">
+          <p class="section-label">About me</p>
+          <h2>Engineer, architect,<br />and builder</h2>
+          <div class="about-grid">
+            <div class="about-text reveal">
+              <p>
+                Senior Full-Stack Engineer and Technical Lead with
+                <span id="experience-inline">7+ years of experience</span>
+                delivering complex SaaS platforms, internal tools, analytics
+                products, and interactive learning systems.
+              </p>
+              <p>
+                Strong background in frontend architecture and scalable
+                full-stack delivery. I've led cross-functional teams, built
+                custom UI systems from scratch, integrated AI-powered workflows
+                using the Anthropic API, and managed production infrastructure
+                on AWS.
+              </p>
+              <p>
+                I care about the full picture — from pixel-perfect UI to cloud
+                infrastructure — and enjoy taking ownership of hard problems end
+                to end.
+              </p>
+            </div>
+            <div class="reveal" style="animation-delay: 0.1s">
+              <dl class="about-stats">
+                <div class="stat-row">
+                  <dt class="stat-desc">
+                    <strong>Years of experience</strong>
+                    across frontend, backend, and infra
+                  </dt>
+                  <dd class="stat-num" id="experience-count">7+</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-desc">
+                    <strong>Engineers led</strong>
+                    in cross-functional teams
+                  </dt>
+                  <dd class="stat-num">5</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-desc">
+                    <strong>Load time reduced</strong>
+                    on a major platform rebuild
+                  </dt>
+                  <dd class="stat-num">50%</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-desc">
+                    <strong>PageSpeed score</strong>
+                    achieved after performance tuning
+                  </dt>
+                  <dd class="stat-num">90+</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="wrap">
+          <p class="section-label">Core skills</p>
+          <h2>What I work with</h2>
+          <ul class="skills-grid reveal">
+            <li class="skill-group">
+              <h3 class="skill-group-label">// frontend</h3>
+              <ul class="skill-tags">
+                <li class="tag">Vue 3</li>
+                <li class="tag">Nuxt 3</li>
+                <li class="tag">TypeScript</li>
+                <li class="tag">JavaScript</li>
+                <li class="tag">SCSS</li>
+                <li class="tag">WebSockets</li>
+                <li class="tag">Chart.js</li>
+                <li class="tag">Handsontable</li>
+              </ul>
+            </li>
+
+            <li class="skill-group">
+              <h3 class="skill-group-label">// backend</h3>
+              <ul class="skill-tags">
+                <li class="tag">Node.js</li>
+                <li class="tag">NestJS</li>
+                <li class="tag">Fastify</li>
+                <li class="tag">Laravel</li>
+                <li class="tag">MongoDB</li>
+                <li class="tag">PostgreSQL</li>
+                <li class="tag">MySQL</li>
+                <li class="tag">Strapi</li>
+              </ul>
+            </li>
+
+            <li class="skill-group">
+              <h3 class="skill-group-label">// AI & LLM</h3>
+              <ul class="skill-tags">
+                <li class="tag">Anthropic API</li>
+                <li class="tag">RAG</li>
+                <li class="tag">Prompt mgmt</li>
+                <li class="tag">AI microservices</li>
+                <li class="tag">Token tracking</li>
+                <li class="tag">Content gen</li>
+              </ul>
+            </li>
+
+            <li class="skill-group">
+              <h3 class="skill-group-label">// infrastructure</h3>
+              <ul class="skill-tags">
+                <li class="tag">AWS ECS</li>
+                <li class="tag">AWS ECR</li>
+                <li class="tag">EC2</li>
+                <li class="tag">S3</li>
+                <li class="tag">CloudFront</li>
+                <li class="tag">Cloudflare</li>
+                <li class="tag">Docker</li>
+              </ul>
+            </li>
+
+            <li class="skill-group">
+              <h3 class="skill-group-label">// leadership</h3>
+              <ul class="skill-tags">
+                <li class="tag">System design</li>
+                <li class="tag">Architecture</li>
+                <li class="tag">Code review</li>
+                <li class="tag">Mentoring</li>
+                <li class="tag">Tech leadership</li>
+              </ul>
+            </li>
+
+            <li class="skill-group">
+              <h3 class="skill-group-label">// other</h3>
+              <ul class="skill-tags">
+                <li class="tag">Google Maps API</li>
+                <li class="tag">Geo APIs</li>
+                <li class="tag">REST</li>
+                <li class="tag">Telegram Bot</li>
+                <li class="tag">Python</li>
+                <li class="tag">FFmpeg</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="wrap">
+          <p class="section-label">Experience</p>
+          <h2>What I've built</h2>
+          <ol class="timeline">
+            <li class="job reveal">
+              <article>
+                <span class="job-dot" aria-hidden="true"></span>
+                <p class="job-period">2025 — Present</p>
+                <h3 class="job-title">Senior Full-Stack Engineer</h3>
+                <p class="job-company">Financial Forecasting SaaS Platform</p>
+                <ul class="job-desc">
+                  <li>
+                    Built a mobile-first analytics platform and standalone
+                    embeddable widget for third-party websites.
+                  </li>
+                  <li>
+                    Owned frontend architecture and contributed to
+                    backend-integrated product flows across the platform.
+                  </li>
+                  <li>
+                    Integrated Strapi as a headless CMS for flexible, API-driven
+                    content management.
+                  </li>
+                  <li>
+                    Built a custom UI system from scratch — charts, forms,
+                    popups, dropdowns, toggles, and switches.
+                  </li>
+                  <li>
+                    Partnered with backend, design, and data stakeholders on
+                    financial forecasting workflows.
+                  </li>
+                </ul>
+                <ul class="job-tech" aria-label="Technologies used">
+                  <li class="tech-tag">Vue 3</li>
+                  <li class="tech-tag">TypeScript</li>
+                  <li class="tech-tag">SCSS</li>
+                  <li class="tech-tag">WebSockets</li>
+                  <li class="tech-tag">Strapi</li>
+                  <li class="tech-tag">REST APIs</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="job reveal">
+              <article>
+                <span class="job-dot" aria-hidden="true"></span>
+                <p class="job-period">2024 — 2025</p>
+                <h3 class="job-title">Senior Full-Stack Engineer</h3>
+                <p class="job-company">TaxiGo — Booking Platform</p>
+                <ul class="job-desc">
+                  <li>
+                    Developed customer-facing booking flows in Nuxt 3 and
+                    maintained the admin panel in Nuxt 2.
+                  </li>
+                  <li>
+                    Refactored and extended legacy backend functionality using
+                    Laravel and MySQL.
+                  </li>
+                  <li>
+                    Integrated Google Maps APIs across customer, admin, and
+                    backend flows.
+                  </li>
+                  <li>
+                    Built custom UI components tailored to product needs,
+                    reducing reliance on third-party libraries.
+                  </li>
+                </ul>
+                <ul class="job-tech" aria-label="Technologies used">
+                  <li class="tech-tag">Nuxt 3</li>
+                  <li class="tech-tag">Nuxt 2</li>
+                  <li class="tech-tag">Laravel</li>
+                  <li class="tech-tag">MySQL</li>
+                  <li class="tech-tag">Google Maps API</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="job reveal">
+              <article>
+                <span class="job-dot" aria-hidden="true"></span>
+                <p class="job-period">2024 — 2025</p>
+                <h3 class="job-title">
+                  Senior Full-Stack Engineer → Technical Lead
+                </h3>
+                <p class="job-company">
+                  Marketplace Startup (NDA) <span>Promoted after 6 months</span>
+                </p>
+                <ul class="job-desc">
+                  <li>
+                    Developed full-stack marketplace functionality — cart &
+                    checkout, geo-based features, user roles, dashboards.
+                  </li>
+                  <li>
+                    Led technical direction, code quality initiatives, and
+                    architecture decisions after promotion to Tech Lead.
+                  </li>
+                  <li>
+                    Established production-ready infrastructure on AWS and
+                    Cloudflare for scalable deployment.
+                  </li>
+                  <li>
+                    Integrated Google Maps and geo APIs into user-facing and
+                    operational flows.
+                  </li>
+                </ul>
+                <ul class="job-tech" aria-label="Technologies used">
+                  <li class="tech-tag">Nuxt 3</li>
+                  <li class="tech-tag">TypeScript</li>
+                  <li class="tech-tag">Laravel</li>
+                  <li class="tech-tag">PostgreSQL</li>
+                  <li class="tech-tag">AWS</li>
+                  <li class="tech-tag">Cloudflare</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="job reveal">
+              <article>
+                <span class="job-dot" aria-hidden="true"></span>
+                <p class="job-period">2023 — 2025</p>
+                <h3 class="job-title">
+                  Technical Lead / Senior Full-Stack Engineer
+                </h3>
+                <p class="job-company">
+                  SkillStamp LLC — Gen Z Mobile Learning Platform
+                </p>
+                <ul class="job-desc">
+                  <li>
+                    Coordinated a cross-functional team of 5 engineers across
+                    frontend, backend, QA, and game delivery.
+                  </li>
+                  <li>
+                    Led technical direction for a multi-year product
+                    redevelopment and launch.
+                  </li>
+                  <li>
+                    Designed and built AI-powered services for content
+                    validation and generation using the Anthropic API.
+                  </li>
+                  <li>
+                    Implemented prompt management, usage tracking, logging, and
+                    background processing for AI features.
+                  </li>
+                  <li>
+                    Architected and deployed the entire production cloud
+                    infrastructure from the ground up.
+                  </li>
+                </ul>
+                <ul class="job-tech" aria-label="Technologies used">
+                  <li class="tech-tag">Vue 2</li>
+                  <li class="tech-tag">Node.js</li>
+                  <li class="tech-tag">NestJS</li>
+                  <li class="tech-tag">MongoDB</li>
+                  <li class="tech-tag">Anthropic API</li>
+                  <li class="tech-tag">AWS ECS/ECR/EC2</li>
+                  <li class="tech-tag">CloudFront</li>
+                  <li class="tech-tag">S3</li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="job reveal">
+              <article>
+                <span class="job-dot" aria-hidden="true"></span>
+                <p class="job-period">2018 — 2023</p>
+                <h3 class="job-title">
+                  Senior Full-Stack Engineer / Tech Lead
+                </h3>
+                <p class="job-company">
+                  SkillStamp LLC — Enterprise Spreadsheet Learning Platform
+                </p>
+                <ul class="job-desc">
+                  <li>
+                    Grew from frontend/backend contributor to sole developer
+                    across major parts of the platform.
+                  </li>
+                  <li>
+                    Built complex interactive interfaces — Excel-like tables,
+                    drag-and-drop builders, data visualizations.
+                  </li>
+                  <li>
+                    Reduced application load time by ~50% and improved overall
+                    platform performance by ~20%.
+                  </li>
+                  <li>Achieved Google PageSpeed score of 90+.</li>
+                  <li>
+                    Mentored junior developers, performed code reviews, and
+                    supported delivery quality.
+                  </li>
+                </ul>
+                <ul class="job-tech" aria-label="Technologies used">
+                  <li class="tech-tag">Vue 2</li>
+                  <li class="tech-tag">Node.js</li>
+                  <li class="tech-tag">MongoDB</li>
+                  <li class="tech-tag">Handsontable</li>
+                  <li class="tech-tag">Chart.js</li>
+                  <li class="tech-tag">AWS</li>
+                </ul>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- EDUCATION & LANGUAGES -->
+      <section id="edu">
+        <div class="wrap">
+          <p class="section-label">Education & Languages</p>
+          <h2>Background</h2>
+          <div class="edu-grid">
+            <div class="reveal">
+              <ul class="edu-list">
+                <li>
+                  <article class="edu-card">
+                    <h3 class="edu-degree">
+                      Master's Degree, Computer Science
+                    </h3>
+                    <p class="edu-uni">Zaporizhzhia National University</p>
+                    <p class="edu-year">2019 — 2020</p>
+                  </article>
+                </li>
+                <li>
+                  <article class="edu-card">
+                    <h3 class="edu-degree">
+                      Bachelor's Degree, Computer Science
+                    </h3>
+                    <p class="edu-uni">Zaporizhzhia National University</p>
+                    <p class="edu-year">2015 — 2019</p>
+                  </article>
+                </li>
+              </ul>
+            </div>
+            <div class="reveal">
+              <ul class="lang-list">
+                <li class="lang-item">
+                  <img
+                    src="https://flagcdn.com/24x18/gb.png"
+                    srcset="https://flagcdn.com/48x36/gb.png 2x"
+                    width="24"
+                    height="18"
+                    alt="English"
+                    style="border-radius: 2px; display: block"
+                  />
+                  <div class="lang-info">
+                    <p class="lang-name">English</p>
+                    <p class="lang-level">Professional working proficiency</p>
+                  </div>
+                </li>
+                <li class="lang-item">
+                  <img
+                    src="https://flagcdn.com/24x18/ua.png"
+                    srcset="https://flagcdn.com/48x36/ua.png 2x"
+                    width="24"
+                    height="18"
+                    alt="Ukrainian"
+                    style="border-radius: 2px; display: block"
+                  />
+                  <div class="lang-info">
+                    <p class="lang-name">Ukrainian</p>
+                    <p class="lang-level">Native</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="wrap">
+          <p class="section-label" style="justify-content: center">
+            Let's work together
+          </p>
+          <h2 class="contact-headline reveal">
+            Ready to<br /><span>build something</span><br />great?
+          </h2>
+          <p class="contact-sub reveal">
+            Open to senior engineering and technical lead roles. Let's talk
+            about what you're building.
+          </p>
+          <address class="contact-links reveal">
+            <a
+              class="btn btn-primary"
+              href="mailto:vadym.pasichnyk.dev@gmail.com"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 7 10-7" />
+              </svg>
+              vadym.pasichnyk.dev@gmail.com
+            </a>
+            <a
+              class="btn btn-ghost"
+              href="https://www.linkedin.com/in/vadym-pasichnyk-736b6a198/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn ↗</a
+            >
+          </address>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-txt">
+        © <span id="current-year">2026</span> <span>Vadym Pasichnyk</span>.
+        Built with care.
+      </p>
+      <p class="footer-txt">
+        Senior Full-Stack Engineer <span>/</span> Technical Lead
+      </p>
+    </footer>
+
+    <script>
+      const nav = document.querySelector('nav');
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      function closeNav() {
+        if (!nav || !navToggle) return;
+        nav.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open navigation');
+      }
+
+      if (nav && navToggle) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('nav-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          navToggle.setAttribute(
+            'aria-label',
+            isOpen ? 'Close navigation' : 'Open navigation',
+          );
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', closeNav);
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 700) closeNav();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeNav();
+        });
+      }
+
+      // Typing animation
+      const phrases = [
+        'Senior Full-Stack Engineer',
+        'Technical Lead',
+        'AI Integration Specialist',
+        'Vue / Node.js Expert',
+      ];
+      let pi = 0,
+        ci = phrases[0].length,
+        deleting = true;
+      const el = document.getElementById('typed-text');
+      const yearEl = document.getElementById('current-year');
+      const experienceCountEl = document.getElementById('experience-count');
+      const experienceLabelEl = document.getElementById('experience-label');
+      const experienceInlineEl = document.getElementById('experience-inline');
+
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      const experienceStartYear = 2018;
+      const experienceAnniversaryMonth = 5; // June (0-indexed)
+      const now = new Date();
+      const completedYears = Math.max(
+        0,
+        now.getFullYear() -
+          experienceStartYear -
+          (now.getMonth() < experienceAnniversaryMonth ? 1 : 0),
+      );
+      const experienceValue = `${completedYears}${now.getMonth() === experienceAnniversaryMonth ? '' : '+'}`;
+
+      if (experienceCountEl) {
+        experienceCountEl.textContent = experienceValue;
+      }
+
+      if (experienceLabelEl) {
+        experienceLabelEl.textContent = `${experienceValue} years of experience`;
+      }
+
+      if (experienceInlineEl) {
+        experienceInlineEl.textContent = `${experienceValue} years of experience`;
+      }
+
+      function type() {
+        const phrase = phrases[pi];
+        if (!deleting) {
+          el.textContent = phrase.slice(0, ++ci);
+          if (ci === phrase.length) {
+            deleting = true;
+            setTimeout(type, 1800);
+            return;
+          }
+        } else {
+          el.textContent = phrase.slice(0, --ci);
+          if (ci === 0) {
+            deleting = false;
+            pi = (pi + 1) % phrases.length;
+          }
+        }
+        setTimeout(type, deleting ? 40 : 70);
+      }
+      setTimeout(type, 1800);
+
+      // Scroll reveal
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+    </script>
+  </body>
+</html>
