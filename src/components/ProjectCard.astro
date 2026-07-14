@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  compact?: boolean;
+}
+
+const { project, compact = false } = Astro.props;
+const { title, summary, tags, coverImage, coverIsPlaceholder } = project.data;
+---
+
+<a class="project-card" class:list={[{ compact }]} href={`/projects/${project.id}`}>
+  {
+    !compact && (
+      <div class="project-card-cover">
+        <Image src={coverImage} alt="" loading="lazy" format="avif" />
+        {coverIsPlaceholder && <span class="tech-tag project-card-preview">Preview</span>}
+      </div>
+    )
+  }
+  <div class="project-card-body">
+    <h3 class="project-card-title">{title}</h3>
+    <p class="project-card-summary">{summary}</p>
+    <ul class="skill-tags">
+      {tags.slice(0, 3).map((tag) => <li class="tag">{tag}</li>)}
+    </ul>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      transform 0.2s;
+  }
+  .project-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .project-card.compact {
+    background: var(--bg);
+    border-color: var(--border);
+  }
+
+  .project-card-cover {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--surface2);
+  }
+  .project-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .project-card-preview {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    color: var(--teal);
+    border-color: var(--teal-mid);
+    background: var(--teal-dim);
+  }
+
+  .project-card-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .project-card-title {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .project-card-summary {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+</style>

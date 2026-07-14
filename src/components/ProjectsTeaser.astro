@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<section id="case-studies">
+  <div class="wrap">
+    <p class="section-label">Case studies</p>
+    <h2>Selected projects</h2>
+    <ul class="project-teaser-grid reveal">
+      {projects.map((project) => (
+        <li>
+          <ProjectCard project={project} compact />
+        </li>
+      ))}
+    </ul>
+    <a class="btn btn-ghost" href="/projects">View all projects →</a>
+  </div>
+</section>
+
+<style>
+  #case-studies {
+    background: var(--surface);
+  }
+
+  .project-teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+</style>

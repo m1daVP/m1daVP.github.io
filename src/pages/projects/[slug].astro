@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, role, company, period, techStack, coverImage, draft, mappingConfirmed } =
+  project.data;
+---
+
+<BaseLayout title={`${title} — Vadym Pasichnyk`} description={summary}>
+  <article id="case-study">
+    <div class="wrap">
+      <p class="section-label">Case study</p>
+      <h1>{title}</h1>
+      {(role || company || period) && (
+        <p class="case-study-meta">
+          {role}
+          {role && company && ' · '}
+          {company}
+          {(role || company) && period && ' · '}
+          {period}
+        </p>
+      )}
+
+      {draft && (
+        <p class="draft-badge">Draft — pending fact-check, screenshots, and expansion</p>
+      )}
+      {mappingConfirmed === false && (
+        <p class="draft-badge draft-badge-warning">
+          Unconfirmed — this project isn't matched to a specific role yet, see note below
+        </p>
+      )}
+
+      <ul class="job-tech" aria-label="Technologies used">
+        {techStack.map((t) => <li class="tech-tag">{t}</li>)}
+      </ul>
+
+      <Image class="case-study-cover" src={coverImage} alt={`${title} cover`} format="avif" />
+
+      <div class="case-study-body reveal">
+        <Content />
+      </div>
+
+      <a class="btn btn-ghost btn-back" href="/projects">← Back to all projects</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  #case-study {
+    padding-top: calc(64px + 4rem);
+  }
+
+  .case-study-meta {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-3);
+    margin-bottom: 1.5rem;
+  }
+
+  .draft-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-mid);
+    border-radius: 3px;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .draft-badge-warning {
+    color: var(--orange);
+    background: var(--orange-dim);
+    border-color: var(--orange-mid);
+    margin-left: 0.5rem;
+  }
+
+  .job-tech {
+    margin-bottom: 2rem;
+  }
+
+  .case-study-cover {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    display: block;
+  }
+
+  .case-study-body {
+    max-width: 720px;
+    margin-bottom: 3rem;
+  }
+  .case-study-body :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .case-study-body :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .case-study-body :global(p) {
+    color: var(--text-2);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .case-study-body :global(ul) {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .case-study-body :global(li) {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    line-height: 1.7;
+    padding: 0.3rem 0 0.3rem 1.25rem;
+    position: relative;
+  }
+  .case-study-body :global(li)::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 0.7rem;
+    top: 0.7rem;
+  }
+  .case-study-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+  .case-study-body :global(strong) {
+    color: var(--text);
+  }
+</style>

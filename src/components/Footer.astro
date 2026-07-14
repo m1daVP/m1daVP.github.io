@@ -1,0 +1,16 @@
+<footer>
+  <p class="footer-txt">
+    © <span id="current-year">2026</span> <span>Vadym Pasichnyk</span>.
+    Built with care.
+  </p>
+  <p class="footer-txt">
+    Senior Full-Stack Engineer <span>/</span> Technical Lead
+  </p>
+</footer>
+
+<script>
+  const yearEl = document.getElementById('current-year');
+  if (yearEl) {
+    yearEl.textContent = String(new Date().getFullYear());
+  }
+</script>

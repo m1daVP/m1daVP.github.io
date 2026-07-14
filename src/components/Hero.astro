@@ -1,0 +1,144 @@
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <p class="hero-tag">available for new opportunities</p>
+
+      <h1>
+        Vadym<br />
+        <span class="last">Pasichnyk</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        <span id="typed-text">Senior Full-Stack Engineer</span
+        ><span class="cursor"></span>
+      </p>
+
+      <ul class="hero-meta" aria-label="Profile highlights">
+        <li class="meta-item">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+            />
+            <circle cx="12" cy="9" r="2.5" />
+          </svg>
+          Poland (remote)
+        </li>
+        <li class="meta-item">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M2 9h20M7 4v5" />
+          </svg>
+          <span id="experience-label">7+ years of experience</span>
+        </li>
+        <li class="meta-item">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          Full-Stack · Tech Lead · AI
+        </li>
+      </ul>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="/#experience">View work</a>
+        <a
+          class="btn btn-ghost"
+          href="https://www.linkedin.com/in/vadym-pasichnyk-736b6a198/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn ↗</a
+        >
+      </div>
+
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <p class="hero-divider-txt">// scroll to explore</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const phrases = [
+    'Senior Full-Stack Engineer',
+    'Technical Lead',
+    'AI Integration Specialist',
+    'Vue / Node.js Expert',
+  ];
+  let pi = 0,
+    ci = phrases[0].length,
+    deleting = true;
+  const el = document.getElementById('typed-text');
+  const experienceCountEl = document.getElementById('experience-count');
+  const experienceLabelEl = document.getElementById('experience-label');
+  const experienceInlineEl = document.getElementById('experience-inline');
+
+  const experienceStartYear = 2018;
+  const experienceAnniversaryMonth = 5; // June (0-indexed)
+  const now = new Date();
+  const completedYears = Math.max(
+    0,
+    now.getFullYear() -
+      experienceStartYear -
+      (now.getMonth() < experienceAnniversaryMonth ? 1 : 0),
+  );
+  const experienceValue = `${completedYears}${now.getMonth() === experienceAnniversaryMonth ? '' : '+'}`;
+
+  if (experienceCountEl) {
+    experienceCountEl.textContent = experienceValue;
+  }
+
+  if (experienceLabelEl) {
+    experienceLabelEl.textContent = `${experienceValue} years of experience`;
+  }
+
+  if (experienceInlineEl) {
+    experienceInlineEl.textContent = `${experienceValue} years of experience`;
+  }
+
+  function type() {
+    if (!el) return;
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        pi = (pi + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, deleting ? 40 : 70);
+  }
+
+  if (el) {
+    setTimeout(type, 1800);
+  }
+</script>

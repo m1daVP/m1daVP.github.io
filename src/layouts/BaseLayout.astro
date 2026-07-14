@@ -1,0 +1,65 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const {
+  title = 'Vadym Pasichnyk — Senior Full-Stack Engineer',
+  description = "Portfolio of Vadym Pasichnyk, a senior full-stack engineer and technical lead focused on SaaS platforms, frontend architecture, backend systems, and AI-powered products.",
+  ogTitle = 'Vadym Pasichnyk — Senior Full-Stack Engineer',
+  ogDescription = 'Senior full-stack engineer and technical lead building SaaS platforms, scalable product systems, and AI-powered workflows.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#080a0f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="freelancehunt" content="0ba2305f8541ea6" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+    </script>
+  </body>
+</html>

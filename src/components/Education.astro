@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<section id="edu">
+  <div class="wrap">
+    <p class="section-label">Education & Languages</p>
+    <h2>Background</h2>
+    <div class="edu-grid">
+      <div class="reveal">
+        <ul class="edu-list">
+          <li>
+            <article class="edu-card">
+              <h3 class="edu-degree">
+                Master's Degree, Computer Science
+              </h3>
+              <p class="edu-uni">Zaporizhzhia National University</p>
+              <p class="edu-year">2019 — 2020</p>
+            </article>
+          </li>
+          <li>
+            <article class="edu-card">
+              <h3 class="edu-degree">
+                Bachelor's Degree, Computer Science
+              </h3>
+              <p class="edu-uni">Zaporizhzhia National University</p>
+              <p class="edu-year">2015 — 2019</p>
+            </article>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <ul class="lang-list">
+          <li class="lang-item">
+            <Image
+              src="https://flagcdn.com/24x18/gb.png"
+              width={24}
+              height={18}
+              densities={[1, 2]}
+              alt="English"
+              style="border-radius: 2px; display: block"
+            />
+            <div class="lang-info">
+              <p class="lang-name">English</p>
+              <p class="lang-level">Professional working proficiency</p>
+            </div>
+          </li>
+          <li class="lang-item">
+            <Image
+              src="https://flagcdn.com/24x18/ua.png"
+              width={24}
+              height={18}
+              densities={[1, 2]}
+              alt="Ukrainian"
+              style="border-radius: 2px; display: block"
+            />
+            <div class="lang-info">
+              <p class="lang-name">Ukrainian</p>
+              <p class="lang-level">Native</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
