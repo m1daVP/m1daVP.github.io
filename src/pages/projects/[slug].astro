@@ -21,7 +21,7 @@ const { title, summary, role, company, period, techStack, coverImage, draft, map
   <article id="case-study">
     <div class="wrap">
       <p class="section-label">Case study</p>
-      <h1>{title}</h1>
+      <h1 class="case-study-title">{title}</h1>
       {(role || company || period) && (
         <p class="case-study-meta">
           {role}
@@ -90,8 +90,13 @@ const { title, summary, role, company, period, techStack, coverImage, draft, map
     margin-bottom: 2rem;
   }
 
+  .case-study-title {
+    font-size: 4rem;
+  }
+
   .case-study-cover {
     width: 100%;
+    height: auto;
     border-radius: 8px;
     border: 1px solid var(--border);
     margin-bottom: 3rem;
