@@ -21,6 +21,27 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function () {
+        var STORAGE_KEY = 'theme';
+        try {
+          var pref = localStorage.getItem(STORAGE_KEY) || 'system';
+          var effective =
+            pref === 'system'
+              ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : pref;
+          document.documentElement.setAttribute('data-theme', effective);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute('content', effective === 'light' ? '#f6f5f1' : '#080a0f');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

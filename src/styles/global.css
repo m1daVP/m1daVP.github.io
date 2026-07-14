@@ -7,15 +7,44 @@
   --teal: #00cfa8;
   --teal-dim: #00cfa820;
   --teal-mid: #00cfa840;
+  --teal-hover: #00e8bb;
   --orange: #ff7140;
   --orange-dim: #ff714015;
   --orange-mid: #ff714030;
   --text: #edf0f8;
   --text-2: #8892a8;
   --text-3: #525f7a;
+  --nav-bg: rgba(8, 10, 15, 0.85);
+  --nav-dropdown-bg: rgba(8, 10, 15, 0.98);
+  --nav-dropdown-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --btn-primary-text: #000;
   --mono: 'JetBrains Mono', monospace;
   --sans: 'DM Sans', sans-serif;
   --display: 'Syne', sans-serif;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface2: #eeece5;
+  --border: #e0ddd2;
+  --border2: #cfcabb;
+  --teal: #0a9c80;
+  --teal-dim: #0a9c8014;
+  --teal-mid: #0a9c8030;
+  --teal-hover: #08876e;
+  --orange: #d85a2a;
+  --orange-dim: #d85a2a12;
+  --orange-mid: #d85a2a28;
+  --text: #14171f;
+  --text-2: #4c5468;
+  --text-3: #7b8298;
+  --nav-bg: rgba(246, 245, 241, 0.85);
+  --nav-dropdown-bg: rgba(255, 255, 255, 0.98);
+  --nav-dropdown-shadow: 0 18px 40px rgba(20, 23, 31, 0.12);
+  --btn-primary-text: #ffffff;
+  color-scheme: light;
 }
 
 *,
@@ -37,6 +66,9 @@ body {
   font-size: 16px;
   line-height: 1.7;
   overflow-x: hidden;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 /* grid texture */
@@ -65,7 +97,7 @@ nav {
   justify-content: space-between;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
   height: 64px;
-  background: rgba(8, 10, 15, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -80,6 +112,12 @@ nav {
 }
 .nav-logo span {
   color: var(--teal);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .nav-links {
@@ -120,6 +158,95 @@ nav {
 .nav-toggle:hover {
   border-color: var(--teal-mid);
   color: var(--teal);
+}
+
+/* ─── THEME SWITCH ─── */
+.theme-switch {
+  position: relative;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon,
+.theme-toggle .icon-system {
+  display: none;
+}
+:root[data-theme='light'] .theme-toggle .icon-sun {
+  display: block;
+}
+:root[data-theme='dark'] .theme-toggle .icon-moon {
+  display: block;
+}
+.theme-toggle:hover {
+  border-color: var(--teal-mid);
+  color: var(--teal);
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 150px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--nav-dropdown-shadow);
+  padding: 0.35rem;
+  z-index: 200;
+}
+.theme-menu[hidden] {
+  display: none;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  padding: 0.55rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}
+.theme-option svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+.theme-option:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+.theme-option[aria-checked='true'] {
+  color: var(--teal);
+}
+.theme-option[aria-checked='true']::after {
+  content: '✓';
+  margin-left: auto;
+  font-size: 0.7rem;
 }
 
 /* ─── WRAPPER ─── */
@@ -257,10 +384,10 @@ h1 .last {
 
 .btn-primary {
   background: var(--teal);
-  color: #000;
+  color: var(--btn-primary-text);
 }
 .btn-primary:hover {
-  background: #00e8bb;
+  background: var(--teal-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--teal-mid);
 }
@@ -770,10 +897,10 @@ footer {
     flex-direction: column;
     gap: 0;
     padding: 0.5rem;
-    background: rgba(8, 10, 15, 0.98);
+    background: var(--nav-dropdown-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    box-shadow: var(--nav-dropdown-shadow);
   }
   nav.nav-open .nav-links {
     display: flex;

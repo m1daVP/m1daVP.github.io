@@ -5,6 +5,98 @@ const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 
 <nav aria-label="Primary">
   <a class="nav-logo" href="/">VP<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links" id="site-nav">
+      <li><a href={anchor('about')}>about</a></li>
+      <li><a href={anchor('skills')}>skills</a></li>
+      <li><a href={anchor('experience')}>experience</a></li>
+      <li><a href="/projects">projects</a></li>
+      <li><a href={anchor('edu')}>education</a></li>
+      <li><a href={anchor('contact')}>contact</a></li>
+    </ul>
+    <div class="theme-switch">
+    <button
+      class="theme-toggle"
+      type="button"
+      id="theme-toggle-btn"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      aria-controls="theme-menu"
+      aria-label="Toggle color theme"
+    >
+      <svg
+        class="icon-sun"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path
+          d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+        />
+      </svg>
+      <svg
+        class="icon-moon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+    <ul class="theme-menu" id="theme-menu" role="menu" aria-label="Theme" hidden>
+      <li role="none">
+        <button
+          role="menuitemradio"
+          class="theme-option"
+          data-theme-choice="light"
+          aria-checked="false"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+            />
+          </svg>
+          <span>Light</span>
+        </button>
+      </li>
+      <li role="none">
+        <button
+          role="menuitemradio"
+          class="theme-option"
+          data-theme-choice="dark"
+          aria-checked="false"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <span>Dark</span>
+        </button>
+      </li>
+      <li role="none">
+        <button
+          role="menuitemradio"
+          class="theme-option"
+          data-theme-choice="system"
+          aria-checked="false"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="13" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+          <span>System</span>
+        </button>
+      </li>
+    </ul>
+  </div>
   <button
     class="nav-toggle"
     type="button"
@@ -22,14 +114,7 @@ const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
       <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   </button>
-  <ul class="nav-links" id="site-nav">
-    <li><a href={anchor('about')}>about</a></li>
-    <li><a href={anchor('skills')}>skills</a></li>
-    <li><a href={anchor('experience')}>experience</a></li>
-    <li><a href="/projects">projects</a></li>
-    <li><a href={anchor('edu')}>education</a></li>
-    <li><a href={anchor('contact')}>contact</a></li>
-  </ul>
+  </div>
 </nav>
 
 <script>
@@ -65,5 +150,112 @@ const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeNav();
     });
+  }
+
+  const THEME_KEY = 'theme';
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const themeMenu = document.getElementById('theme-menu');
+  const themeOptions = document.querySelectorAll('.theme-option');
+
+  function getStoredPreference() {
+    try {
+      return localStorage.getItem(THEME_KEY) || 'system';
+    } catch (e) {
+      return 'system';
+    }
+  }
+
+  function resolveEffective(pref) {
+    if (pref === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    }
+    return pref;
+  }
+
+  function applyEffectiveTheme(effective) {
+    document.documentElement.setAttribute('data-theme', effective);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', effective === 'light' ? '#f6f5f1' : '#080a0f');
+    }
+  }
+
+  function updateMenuState(pref) {
+    themeOptions.forEach((opt) => {
+      opt.setAttribute(
+        'aria-checked',
+        String(opt.getAttribute('data-theme-choice') === pref),
+      );
+    });
+  }
+
+  function setPreference(pref) {
+    try {
+      localStorage.setItem(THEME_KEY, pref);
+    } catch (e) {
+      // ignore
+    }
+    applyEffectiveTheme(resolveEffective(pref));
+    updateMenuState(pref);
+  }
+
+  function openThemeMenu() {
+    if (!themeMenu || !themeToggleBtn) return;
+    themeMenu.hidden = false;
+    themeToggleBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeThemeMenu() {
+    if (!themeMenu || !themeToggleBtn) return;
+    themeMenu.hidden = true;
+    themeToggleBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  if (themeToggleBtn && themeMenu) {
+    updateMenuState(getStoredPreference());
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (themeMenu.hidden) {
+        openThemeMenu();
+      } else {
+        closeThemeMenu();
+      }
+    });
+
+    themeOptions.forEach((opt) => {
+      opt.addEventListener('click', () => {
+        const choice = opt.getAttribute('data-theme-choice');
+        if (choice) setPreference(choice);
+        closeThemeMenu();
+        themeToggleBtn.focus();
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (
+        !themeMenu.hidden &&
+        event.target instanceof Node &&
+        !event.target.closest('.theme-switch')
+      ) {
+        closeThemeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !themeMenu.hidden) {
+        closeThemeMenu();
+        themeToggleBtn.focus();
+      }
+    });
+
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (event) => {
+        if (getStoredPreference() === 'system') {
+          applyEffectiveTheme(event.matches ? 'dark' : 'light');
+        }
+      });
   }
 </script>
