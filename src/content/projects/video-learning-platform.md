@@ -1,7 +1,7 @@
 ---
 title: Video Learning Platform
 summary: Frontend features for a video learning platform, including real-time video session flows with Zoom integration.
-role: Independent project (early career)
+role: Full-Stack Engineer
 period: "2019"
 tags:
   - Real-time video sessions
@@ -9,8 +9,9 @@ tags:
 techStack:
   - React
   - Redux
+  - SCSS
 coverImage: ../../assets/images/projects/e-learning.avif
-coverIsPlaceholder: true
+coverIsPlaceholder: false
 order: 7
 draft: false
 mappingConfirmed: true

@@ -1,7 +1,7 @@
 ---
 title: Real-Time Project Management Tool
 summary: Real-time task management interface with WebSocket-driven collaboration, built on a NestJS backend.
-role: Independent project (early career)
+role: Full-Stack Engineer
 period: 2019 — 2020
 tags:
   - WebSocket implementation
@@ -13,6 +13,7 @@ techStack:
   - TailwindCSS
   - WebSockets
   - NestJS
+  - Styled Components
 coverImage: ../../assets/images/projects/kanban.avif
 coverIsPlaceholder: false
 order: 6
