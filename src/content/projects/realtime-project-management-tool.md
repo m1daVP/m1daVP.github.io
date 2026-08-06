@@ -19,6 +19,7 @@ coverIsPlaceholder: false
 order: 6
 draft: false
 mappingConfirmed: true
+slug: management-tool
 ---
 
 ## Overview

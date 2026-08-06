@@ -27,6 +27,7 @@ coverIsPlaceholder: false
 order: 1
 draft: false
 mappingConfirmed: true
+slug: forecasting
 ---
 
 ## Overview

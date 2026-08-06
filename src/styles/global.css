@@ -87,6 +87,7 @@ body::before {
 
 /* ─── NAV ─── */
 nav {
+  width: 100dvw;
   position: fixed;
   top: 0;
   left: 0;
@@ -877,7 +878,7 @@ footer {
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .about-grid,
   .edu-grid {
     grid-template-columns: 1fr;

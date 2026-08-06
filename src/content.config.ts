@@ -18,6 +18,7 @@ const projects = defineCollection({
       order: z.number().default(0),
       draft: z.boolean().default(true),
       mappingConfirmed: z.boolean().default(true),
+      slug: z.string().optional(),
     }),
 });
 

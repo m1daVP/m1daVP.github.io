@@ -15,6 +15,7 @@ coverIsPlaceholder: false
 order: 7
 draft: false
 mappingConfirmed: true
+slug: video-learning
 ---
 
 ## Overview

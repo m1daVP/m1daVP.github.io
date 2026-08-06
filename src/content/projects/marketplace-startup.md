@@ -27,6 +27,7 @@ coverIsPlaceholder: false
 order: 3
 draft: false
 mappingConfirmed: true
+slug: marketplace
 ---
 
 ## Overview

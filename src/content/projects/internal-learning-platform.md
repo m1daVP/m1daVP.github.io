@@ -1,5 +1,5 @@
 ---
-title: Internal Learning Platform
+title: Learning Platform for Gen Z
 summary: Interactive mobile learning platform for Gen Z, with AI-powered content workflows.
 role: Senior Full-Stack Engineer / Technical Lead
 company: SkillStamp LLC
@@ -31,6 +31,7 @@ coverIsPlaceholder: false
 order: 2
 draft: false
 mappingConfirmed: true
+slug: learning
 ---
 
 ## Overview

@@ -23,6 +23,7 @@ coverIsPlaceholder: false
 order: 4
 draft: false
 mappingConfirmed: true
+slug: booking-platform
 ---
 
 ## Overview

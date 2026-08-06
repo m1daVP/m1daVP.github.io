@@ -144,7 +144,7 @@ const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 700) closeNav();
+      if (window.innerWidth > 767) closeNav();
     });
 
     document.addEventListener('keydown', (event) => {

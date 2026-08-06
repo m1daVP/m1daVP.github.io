@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, summary, role, company, period, techStack, coverImage, draft, mappingConfirmed } =
+const { title, summary, role, company, period, techStack, coverImage, draft, mappingConfirmed, slug } =
   project.data;
 ---
 
@@ -21,7 +21,7 @@ const { title, summary, role, company, period, techStack, coverImage, draft, map
   <article id="case-study">
     <div class="wrap">
       <p class="section-label">Case study</p>
-      <h1 class="case-study-title">{title}</h1>
+      <h1 class={`case-study-title case-study-title--${slug}`}>{title}</h1>
       {(role || company || period) && (
         <p class="case-study-meta">
           {role}
@@ -146,5 +146,21 @@ const { title, summary, role, company, period, techStack, coverImage, draft, map
   }
   .case-study-body :global(strong) {
     color: var(--text);
+  }
+
+  @media (max-width: 767px) {
+    .case-study-title {
+      font-size: 3rem;
+    }
+
+    .case-study-title--forecasting,
+    .case-study-title--marketplace,
+    .case-study-title--spreadsheet {
+      font-size: 2.37rem;
+    }
+
+    .case-study-title--management-tool {
+      font-size: 2.24rem;
+    }
   }
 </style>

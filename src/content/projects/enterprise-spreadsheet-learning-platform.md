@@ -21,6 +21,7 @@ coverIsPlaceholder: false
 order: 5
 draft: false
 mappingConfirmed: true
+slug: spreadsheet
 ---
 
 ## Overview
